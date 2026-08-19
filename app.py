@@ -12,6 +12,7 @@ stack = []
 opened_cell = []
 flag = 0
 bt_size = 1
+flag_cell = []
 
 def choose_level(level):
     if level == 1:
@@ -19,26 +20,37 @@ def choose_level(level):
     elif level == 2:
         return Minesweeper(16, 16, 40)
     elif level == 3:
-        return Minesweeper(16, 30, 90)
+        return Minesweeper(24, 16, 90)
     else:
         return Minesweeper(24, 24, 150)
 
 def right_click(event, index):
-    global mfield, flag, fr_tbar
-    mfield[index].config(text="🚩")
-    flag += 1
+    global mfield, flag, fr_tbar, flag_cell
+    if index in flag_cell:
+        mfield[index].config(text=" ")
+        flag -= 1
+        flag_cell.remove(index)
+    else:
+        mfield[index].config(text="🚩")
+        flag += 1
+        flag_cell.append(index)
+
     lab_flag = Label(fr_tbar, text = f"Flags left: {map.nmine - flag}")
     lab_flag.grid(row=0, column=0)
+
     
 def click(index):
-    global map, mfield, remain_cell
+    global map, mfield, remain_cell, flag_cell
+    if index in flag_cell:
+        return
     if map.check_mine(index):
         game_over()
         return
     stack.append(index)
     while stack:
         item = stack.pop(0)
-        if item in opened_cell:
+        if item in opened_cell or\
+           item in flag_cell:
             continue
         else:
             opened_cell.append(item)
