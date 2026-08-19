@@ -47,7 +47,7 @@ def click(index):
             txt = map.get_number_of_mines(item)
             mfield[item].config(text=str(txt))
         else:
-            neighbor_list = map.get_neighbor(item)
+            neighbor_list = map.get_side_neighbor(item)
             stack.extend(neighbor_list)
             mfield[item].config(bg="grey")
     if remain_cell == 0:

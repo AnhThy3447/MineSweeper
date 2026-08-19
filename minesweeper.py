@@ -39,7 +39,20 @@ class Minesweeper():
                         continue
                     neighbor_list.append(j)
         return neighbor_list
-
+    
+    def get_side_neighbor(self, index):
+        neighbor_list = []
+        above_cell = index - self.wcell
+        below_cell = index + self.wcell
+        if above_cell > 0:
+            neighbor_list.append(above_cell)
+        if below_cell <= self.wcell * self.hcell:
+            neighbor_list.append(below_cell)
+        if index % self.wcell > 0:
+            neighbor_list.append(index - 1)
+        if index % self.wcell < self.wcell - 1:
+            neighbor_list.append(index + 1)
+        return neighbor_list
 
     def check_first_move(self, index):
         if self.map[index] == "B":
@@ -66,7 +79,6 @@ class Minesweeper():
             if self.check_first_move(index):
                 for i in range(self.wcell * self.hcell):
                     self.map[i] = self.count_adjacent_mines(i)
-                    print(self.map[i])
                 break
 
     def get_number_of_mines(self, index):
