@@ -21,7 +21,7 @@ def choose_level(level):
     elif level == 3:
         return Minesweeper(16, 30, 90)
     else:
-        return Minesweeper(24, 24, 105)
+        return Minesweeper(24, 24, 150)
 
 def right_click(event, index):
     global mfield, flag, fr_tbar
@@ -45,7 +45,7 @@ def click(index):
         remain_cell -= 1
         if int(map.get_number_of_mines(item)) > 0:
             txt = map.get_number_of_mines(item)
-            mfield[item].config(text=str(txt))
+            mfield[item].config(text=str(txt), bg="grey65")
         else:
             neighbor_list = map.get_side_neighbor(item)
             stack.extend(neighbor_list)
