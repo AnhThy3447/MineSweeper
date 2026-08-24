@@ -26,7 +26,12 @@ The game features 4 difficulty levels tailored to different skill levels.
 
 To download and run this game locally on your machine:
 
-**Clone the repository:**
+**1. Clone the repository:**
    ```bash
    git clone [https://github.com/AnhThy3447/MineSweeper.git](https://github.com/AnhThy3447/MineSweeper.git)
    cd MineSweeper
+   ```
+**2. Run the application:**
+   ```bash
+   python app.py
+   ```
