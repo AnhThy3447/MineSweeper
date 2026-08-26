@@ -31,7 +31,7 @@ def right_click(event, index):
         flag -= 1
         flag_cell.remove(index)
     else:
-        mfield[index].config(text="🚩")
+        mfield[index].config(text="🚩", fg="red")
         flag += 1
         flag_cell.append(index)
 
